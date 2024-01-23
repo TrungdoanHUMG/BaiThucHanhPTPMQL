@@ -2,50 +2,20 @@
 <html>
 <head>
 <style>
-#navlist {
-  position: relative;
-}
-
-#navlist li {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  position: absolute;
-  top: 0;
-}
-
-#navlist li, #navlist a {
-  height: 44px;
-  display: block;
-}
-
-#home {
-  left: 0px;
-  width: 46px;
-  background: url('img_navsprites.gif') 0 0;
-}
-
-#prev {
-  left: 63px;
-  width: 43px;
-  background: url('img_navsprites.gif') -47px 0;
-}
-
-#next {
-  left: 129px;
-  width: 43px;
-  background: url('img_navsprites.gif') -91px 0;
+[title~="flower"] {
+  border: 5px solid yellow;
 }
 </style>
 </head>
 <body>
 
-<ul id="navlist">
-  <li id="home"><a href="default.asp"></a></li>
-  <li id="prev"><a href="css_intro.asp"></a></li>
-  <li id="next"><a href="css_syntax.asp"></a></li>
-</ul>
-<h2>Ng trung đoàn</h2>
+<h2>ng trung đoàn</h2>
+<p>All images with the title attribute containing the word "flower" get a yellow border.</p>
+
+<img src="klematis.jpg" title="klematis flower" width="150" height="113">
+<img src="img_flwr.gif" title="flower" width="224" height="162">
+<img src="img_tree.gif" title="tree" width="200" height="358">
+
 </body>
 </html>
 
