@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html>
 <body>
+<h1>nGUYỄN trung đoàn</h1>
+<canvas id="myCanvas" width="200" height="100" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML canvas tag.</canvas>
 
-<h2>Nguyễn Trung Đoàn</h2>
-<p>The formaction attribute specifies the URL of a file that will process the input when the form is submitted.</p>
-
-<form action="/action_page.php">
-  <label for="fname">First name:</label>
-  <input type="text" id="fname" name="fname"><br><br>
-  <label for="lname">Last name:</label>
-  <input type="text" id="lname" name="lname"><br><br>
-  <input type="submit" value="Submit">
-  <input type="submit" formaction="/action_page2.php" value="Submit as Admin">
-</form>
+<script>
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.font = "30px Arial";
+ctx.strokeText("Hello World",10,50);
+</script>
 
 </body>
 </html>
