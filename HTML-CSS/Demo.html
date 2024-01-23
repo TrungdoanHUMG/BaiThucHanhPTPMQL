@@ -2,19 +2,26 @@
 <html>
 <head>
 <style>
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+div ~ p {
+  background-color: yellow;
 }
 </style>
 </head>
 <body>
 
 <h2>ng trung đoàn</h2>
-<p>To center an image, set left and right margin to auto, and make it into a block element.</p>
 
-<img src="paris.jpg" alt="Paris" style="width:40%">
+<p>The general sibling selector (~) selects all elements that are next siblings of a specified element.</p>
+
+<p>Paragraph 1.</p>
+
+<div>
+  <p>Paragraph 2.</p>
+</div>
+
+<p>Paragraph 3.</p>
+<code>Some code.</code>
+<p>Paragraph 4.</p>
 
 </body>
 </html>
