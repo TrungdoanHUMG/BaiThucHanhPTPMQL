@@ -4,18 +4,19 @@
 
 <h2>Nguyễn Trung Đoàn</h2>
 
-<p>The select element defines a drop-down list:</p>
+<p>The <strong>input type="reset"</strong> defines a reset button that resets all form values to their default values:</p>
 
 <form action="/action_page.php">
-  <label for="cars">Choose a car:</label>
-  <select id="cars" name="cars">
-    <option value="volvo">Volvo</option>
-    <option value="saab">Saab</option>
-    <option value="fiat">Fiat</option>
-    <option value="audi">Audi</option>
-  </select>
-  <input type="submit">
-</form>
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="fname" value="John"><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lname" value="Doe"><br><br>
+  <input type="submit" value="Submit">
+  <input type="reset" value="Reset">
+</form> 
+
+<p>If you change the input values and then click the "Reset" button, the form-data will be reset to the default values.</p>
+
 
 </body>
 </html>
