@@ -8,19 +8,19 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\trung\\.nuget\\packages\\": {}
+    "C:\\Users\\Trung Doan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\BaiThucHanhPTPMQL\\DemoMVC\\DemoMVC.csproj",
+      "projectUniqueName": "D:\\BaiThucHanhPTPMQL\\DemoMVC\\DemoMVC.csproj",
       "projectName": "DemoMVC",
-      "projectPath": "C:\\BaiThucHanhPTPMQL\\DemoMVC\\DemoMVC.csproj",
-      "packagesPath": "C:\\Users\\trung\\.nuget\\packages\\",
-      "outputPath": "C:\\BaiThucHanhPTPMQL\\DemoMVC\\obj\\",
+      "projectPath": "D:\\BaiThucHanhPTPMQL\\DemoMVC\\DemoMVC.csproj",
+      "packagesPath": "C:\\Users\\Trung Doan\\.nuget\\packages\\",
+      "outputPath": "D:\\BaiThucHanhPTPMQL\\DemoMVC\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\trung\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Trung Doan\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
