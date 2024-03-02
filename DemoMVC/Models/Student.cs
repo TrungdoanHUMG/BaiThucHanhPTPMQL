@@ -1,8 +1,8 @@
 namespace DemoMVC.Models
 {
-    public class Student
+    public class Student : Person
     {
         public string StudentID { get; set; }
-        public string TenSV { get; set; }
+        public string Tuoi { get; set; }
     }
 }
