@@ -1,9 +1,15 @@
 using System.ComponentModel.DataAnnotations;
-using System.Data;
-namespace DemoMVC.Models;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DemoMVC.Models
+{
+    [Table("HeThongPhanPhoi")]
+
 public class HeThongPhanPhoi
 {
-    public string? MaHTPP {get;set;}
-    public string? TenHTPP { get; set; }
+    [Key]
+    public string MaHTPP {get;set;}
+    public string TenHTPP { get; set; }
 
+}
 }
