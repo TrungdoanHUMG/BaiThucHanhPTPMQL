@@ -11,7 +11,7 @@ namespace DemoMVC.Controllers
         [HttpPost]
         public IActionResult Index(Student std)
         {
-            string strResult = "Hello :" + std.StudentID + "-" + std.TenSV ; 
+            string strResult = "Hello :" + std.StudentID + "-" + std.Tuoi ; 
             ViewBag.Nhandulieu = strResult;
             return View();
         }
