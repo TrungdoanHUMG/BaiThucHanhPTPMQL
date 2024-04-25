@@ -1,8 +1,12 @@
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using System.Security.AccessControl;
 namespace DemoMVC.Models
 {
-    public class Student : Person
-    {
-        public string StudentID { get; set; }
-        public string Tuoi { get; set; }
-    }
+     [Table("Students")]
+     public class Student  {
+       [Key]
+       public string StudentID { get; set; } 
+       public string FullName { get; set; }
+     }
 }
