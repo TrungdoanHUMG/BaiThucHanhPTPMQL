@@ -25,7 +25,11 @@ namespace DemoMVC.Controllers
                           View(await _context.Person.ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Person'  is null.");
         }
-
+    [HttpPost]
+public async Task<IActionResult> Index(string tuKhoa)
+{
+    return View(await _context.Person.Where(m => m.PersonID.Contains(tuKhoa)).ToListAsync());
+}
         // GET: Person/Details/5
         public async Task<IActionResult> Details(string id)
         {

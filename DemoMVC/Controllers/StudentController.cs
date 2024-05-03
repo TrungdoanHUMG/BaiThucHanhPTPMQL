@@ -40,6 +40,4 @@ namespace DemoMVC.Controllers
         }
 
     }
-
-
 }

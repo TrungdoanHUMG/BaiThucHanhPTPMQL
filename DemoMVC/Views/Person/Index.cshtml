@@ -4,14 +4,24 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Danh Sach</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<div>
+<form asp-action="Index">
+    <input type="text" name="tuKhoa" />
+    <input type="submit" value="Tim kiem"/>
+
+</form>
+</div>
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonID)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.FullName)
             </th>
@@ -24,6 +34,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonID)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FullName)
             </td>
