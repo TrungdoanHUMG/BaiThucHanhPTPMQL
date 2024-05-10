@@ -6,18 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DemoMVC.Models;
+using OfficeOpenXml;
+using DemoMVC.Models.Process;
 
 namespace DemoMVC.Controllers
 {
     public class PersonController : Controller
     {
         private readonly ApplicationDbContext _context;
-
+      private ExcelProcess _excelPro = new ExcelProcess();
         public PersonController(ApplicationDbContext context)
         {
             _context = context;
         }
-
         // GET: Person
         public async Task<IActionResult> Index()
         {
@@ -157,7 +158,64 @@ public async Task<IActionResult> Index(string tuKhoa)
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+      public async Task<IActionResult> Upload()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Upload(IFormFile file)
+        {
+            if (file!=null)
+                {
+                    string fileExtension = Path.GetExtension(file.FileName);
+                    if (fileExtension != ".xls" && fileExtension != ".xlsx")
+                    {
+                        ModelState.AddModelError("", "Please choose excel file to upload!");
+                    }
+                    else
+                    {
+                        //rename file when upload to server
+                        var fileName = DateTime.Now.ToShortTimeString() + fileExtension;
+                        var filePath = Path.Combine(Directory.GetCurrentDirectory() + "/Uploads/Excels", fileName );
+                        var fileLocation = new FileInfo(filePath).ToString();
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                            {
+                                //save file to server
+                                await file.CopyToAsync(stream);
+                                //read data from file and write to database
+                                var dt = _excelPro.ExcelToDataTable(fileLocation);
+                                for(int i = 0; i < dt.Rows.Count; i++)
+                                {
+                                   var ps = new Person();
+                                    ps.PersonID = dt.Rows[i][0].ToString();
+                                    ps.FullName = dt.Rows[i][1].ToString();
+                                    ps.Address = dt.Rows[i][2].ToString();
+                                    _context.Add(ps);
+                                }
+                                await _context.SaveChangesAsync();
+                                return RedirectToAction(nameof(Index));
+                            }
+                        
+                    }
+                }
+            return View ();
+        }
+        public IActionResult Download()
+        {
+            var fileName = "Person.xlsx";
+            using(ExcelPackage excelPackage = new ExcelPackage())
+            {
+                ExcelWorksheet excelWorksheet = excelPackage.Workbook.Worksheets.Add("Sheet 1");
+                excelWorksheet.Cells["A1"].Value = "PersonID";
+                excelWorksheet.Cells["B1"].Value = "FullName";
+                excelWorksheet.Cells["C1"].Value = "Address";
+                var psList = _context.Person.ToList();
+                excelWorksheet.Cells["A2"].LoadFromCollection(psList);
+                var stream = new MemoryStream(excelPackage.GetAsByteArray());
+                return File(stream,"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",fileName);
+            }
+        }  
         private bool PersonExists(string id)
         {
           return (_context.Person?.Any(e => e.PersonID == id)).GetValueOrDefault();
