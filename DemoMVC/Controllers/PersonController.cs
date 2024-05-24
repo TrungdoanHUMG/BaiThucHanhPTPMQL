@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using DemoMVC.Models;
 using OfficeOpenXml;
 using DemoMVC.Models.Process;
+using X.PagedList;
 
 namespace DemoMVC.Controllers
 {
@@ -19,13 +20,27 @@ namespace DemoMVC.Controllers
         {
             _context = context;
         }
-        // GET: Person
-        public async Task<IActionResult> Index()
-        {
-              return _context.Person != null ? 
-                          View(await _context.Person.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Person'  is null.");
-        }
+        // // GET: Person
+        // public async Task<IActionResult> Index()
+        // {
+        //       return _context.Person != null ? 
+        //                   View(await _context.Person.ToListAsync()) :
+        //                   Problem("Entity set 'ApplicationDbContext.Person'  is null.");
+        // }
+          public async Task<IActionResult> Index(int? page, int? PageSize){
+            ViewBag.PageSize= new List<SelectListItem>(){
+                new SelectListItem() { Value="3", Text="3"},
+                new SelectListItem() { Value="5", Text="5"},
+                new SelectListItem() { Value="10", Text="10"},
+                new SelectListItem() { Value="15", Text="15"},
+                new SelectListItem() { Value="25", Text="25"},
+                new SelectListItem() { Value="50", Text="50"},
+            };
+            int pagesize = (PageSize ?? 3);
+            ViewBag.psize= pagesize;
+            var model = _context.Person.ToList().ToPagedList(page ?? 1, pagesize);
+            return View(model);
+            }
     [HttpPost]
 public async Task<IActionResult> Index(string tuKhoa)
 {
